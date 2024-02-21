@@ -1,6 +1,7 @@
 from flask import Flask
 from .extensions import api, db, jwt
 from .users import user
+from .properties import ns
 
 
 def create_app():
@@ -14,5 +15,6 @@ def create_app():
     jwt.init_app(app)
 
     api.add_namespace(user)
+    api.add_namespace(ns)
 
     return app

@@ -18,8 +18,7 @@ class Register(Resource):
             email = user.payload["email"],
             password = generate_password_hash(user.payload["password"]),
             mobileNumber = user.payload["mobileNumber"],
-            city = user.payload["city"],
-            token = ""
+            city = user.payload["city"]
         )
         db.session.add(newUser)
         db.session.commit()
@@ -28,13 +27,13 @@ class Register(Resource):
 
 
 @user.route('/login')
-class Register(Resource):
+class Login(Resource):
     @user.expect(login_model)
     def post(self):
         fetchUser = Users.query.filter_by(email=user.payload["email"]).first()
         if not fetchUser:
             return {"error": "User does not exist"}, 401
-        if not check_password_hash(fetchUser.password, user.password):
+        if not check_password_hash(fetchUser.password, user.payload["password"]):
             return {"error": "Incorrect Password"}, 401
         
-        return {"access_token":}
+        return {"access_token": create_access_token(fetchUser.id)}
