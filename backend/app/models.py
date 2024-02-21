@@ -1,3 +1,4 @@
+from sqlalchemy.orm import class_mapper
 from .extensions import db
 
 class Users(db.Model):
@@ -7,6 +8,16 @@ class Users(db.Model):
     password = db.Column(db.String(255))
     mobileNumber = db.Column(db.String(255))
     city = db.Column(db.String(255))
+
+    def user_to_dict(user):
+        return {
+            'id': user.id,
+            'name': user.name,
+            'email': user.email,
+            'password':user.password,
+            'mobileNumber':user.mobileNumber,
+            'city':user.city
+        }
 
 
 
