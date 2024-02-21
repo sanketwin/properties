@@ -1,6 +1,13 @@
 const base_url = "http://127.0.0.1:5000/";
 
 $(document).ready(function () {
+  $("#example").DataTable({
+    ajax: {
+      url: "../js/arrays.json",
+      dataSrc: "data",
+    },
+    columns: [{ data: "id" }, { data: "name" }],
+  });
   console.log("ready!");
   if (sessionStorage.getItem("token")) {
     const dashboard = document.getElementById("dashboard");

@@ -181,7 +181,6 @@ header .image-text .header-text {
   width: calc(100% - 250px);
   background: var(--body-color);
   transition: var(--transition-05);
-  padding-left: 5rem;
 }
 
 .sidebar.sidebar.close ~ .home {
