@@ -17,6 +17,7 @@ function loadPage(pageUrl, element) {
 }
 
 function renderRegister() {
+  document.getElementById("errorMessage").innerHTML = "";
   const register = document.getElementById("regContainer");
   const login = document.getElementById("logContainer");
   const mainContainer = document.getElementById("mainContainer");
@@ -30,11 +31,12 @@ function renderRegister() {
 }
 
 function renderLogin() {
+  document.getElementById("errorMessage").innerHTML = "";
   const register = document.getElementById("regContainer");
   const login = document.getElementById("logContainer");
 
   register.classList.add("d-none");
 
   login.classList.remove("d-none");
-  login.classList.add("d-block ");
+  login.classList.add("d-block");
 }

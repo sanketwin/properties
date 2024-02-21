@@ -50,6 +50,76 @@ function login() {
     });
 }
 
+function register() {
+  var name = document.getElementById("registerName").value;
+  var email = document.getElementById("registerEmail").value;
+  var password = document.getElementById("registerPassword").value;
+  var mobile = document.getElementById("registerMobile").value;
+  var city = document.getElementById("registerCity").value;
+
+  var message = "";
+
+  var data = {
+    name: name,
+    email: email,
+    password: password,
+    mobileNumber: mobile,
+    city: city,
+  };
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: "Yes",
+    denyButtonText: `No`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(base_url + "user/register", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.id) {
+            document.getElementById("errorMessage").innerHTML = message;
+            Swal.fire({
+              title: "Yay ! Registration Successful",
+              icon: "success",
+              showDenyButton: false,
+              showCancelButton: false,
+              confirmButtonText: "Proceed to Login",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                const register = document.getElementById("regContainer");
+                const login = document.getElementById("logContainer");
+
+                register.classList.add("d-none");
+
+                login.classList.remove("d-none");
+                login.classList.add("d-block");
+              }
+            });
+          } else {
+            message = `<div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class="fa-solid fa-circle-xmark me-2"></i>
+                        <div>
+                            ${data.error}
+                        </div>
+                        </div>`;
+            console.log(message);
+            document.getElementById("errorMessage").innerHTML = message;
+          }
+        });
+    }
+  });
+}
+
 function logout() {
   sessionStorage.clear();
   location.reload();
