@@ -228,3 +228,8 @@ header .image-text .header-text {
   text-decoration: none;
   color: var(--primary-light-color);
 }
+
+.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: none !important;
+}

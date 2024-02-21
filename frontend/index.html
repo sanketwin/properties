@@ -24,23 +24,30 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="js/api.js"></script>
     <script src="js/index.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="login" id="login">
       <div class="container card shadow w-50 p-5" id="mainContainer">
+        <div id="errorMessage"></div>
         <div class="form" id="logContainer">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" />
+            <input type="email" id="loginEmail" class="form-control" />
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" />
+            <input type="password" id="loginPassword" class="form-control" />
           </div>
           <div class="mb-3 d-flex justify-content-center">
-            <button class="btn">Login</button>
+            <button class="btn" onclick="login()">Login</button>
           </div>
           <div class="mb-3 float-end">
             <span
@@ -88,7 +95,7 @@
       </div>
     </div>
 
-    <div class="dashboard d-none">
+    <div class="dashboard d-none" id="dashboard">
       <nav class="sidebar">
         <header>
           <div class="image-text">
@@ -145,7 +152,7 @@
           </div>
           <div class="bottom-content">
             <li class="">
-              <a href="#">
+              <a href="#" onclick="logout()">
                 <i class="fa-solid fa-right-from-bracket icon"></i>
                 <span class="text nav-text">Log out</span>
               </a>
